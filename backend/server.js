@@ -15,7 +15,7 @@ console.log(process.env.CONNECTION_STRING);
 connectToMongo();
 
 //config
-const port = 5000 || process.env.PORT;
+const port = 5000;
 
 const server = app.listen(port, () => {
   console.log(`Server is working on http://localhost:${process.env.PORT}`);
