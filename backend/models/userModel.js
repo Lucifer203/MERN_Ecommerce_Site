@@ -58,11 +58,11 @@ userSchema.methods.getJWTToken = function () {
 
 //Compare password
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(password, this.password);
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
 // generating password reset token
-userSchema.methods.getResetPasswordToken = async function () {
+userSchema.methods.getResetPasswordToken = function () {
   // Generating Token
   const resetToken = crypto.randomBytes(20).toString("hex");
 
