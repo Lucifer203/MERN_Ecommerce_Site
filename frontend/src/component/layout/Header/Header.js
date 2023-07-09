@@ -2,7 +2,7 @@ import React from "react";
 import { ReactNavbar } from "overlay-navbar";
 import { FaUserAlt, FaSearch, FaCartArrowDown } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
-import logo from "../../images/logos.png";
+import logo from "../../../images/logos.png";
 
 const options = {
   burgerColorHover: "#eb4034",
