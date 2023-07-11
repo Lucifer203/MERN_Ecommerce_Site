@@ -19,7 +19,7 @@ const Home = () => {
       return alert.error(error);
     }
     dispatch(getProduct());
-  }, [dispatch, error]);
+  }, [dispatch, error, alert]);
 
   return (
     <Fragment>
@@ -48,7 +48,9 @@ const Home = () => {
         <Product product={product} />
         <Product product={product} /> */}
             {products &&
-              products.map((product) => <Product product={product} />)}
+              products.map((product) => (
+                <Product key={product._id} product={product} />
+              ))}
           </div>
         </Fragment>
       )}

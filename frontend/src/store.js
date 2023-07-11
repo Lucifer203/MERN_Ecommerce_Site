@@ -3,13 +3,13 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  productsDetailsReducer,
+  productDetailsReducer,
   productsReducer,
 } from "./reducers/productReducer";
 
 const reducer = combineReducers({
   products: productsReducer,
-  productDetails: productsDetailsReducer,
+  productDetails: productDetailsReducer,
 });
 
 let initialState = {};

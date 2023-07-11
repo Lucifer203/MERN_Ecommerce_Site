@@ -11,6 +11,7 @@ import {
 import webFont from "webfontloader";
 import React, { useEffect } from "react";
 import Home from "./component/Home/Home.js";
+import ProductDetails from "./component/Product/ProductDetails.js";
 function App() {
   useEffect(() => {
     webFont.load({
@@ -29,6 +30,7 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/product/:id"  element={<ProductDetails />}></Route>
         </Routes>
 
         <Footer />
