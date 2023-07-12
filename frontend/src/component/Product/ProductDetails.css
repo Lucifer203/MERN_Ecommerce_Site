@@ -1,0 +1,128 @@
+/* .ProductDetails{
+    background-image: linear-gradient(to right, #e3e3e6,#d0d0d3);  
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    padding: 10vmax;
+} */
+
+/* .ProductDetails > div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2vmax;
+    box-sizing: border-box;
+    border: 1px solid white;
+}
+.CarouselImage {
+    width: 30%;
+ height: auto;
+ padding: 0 20px; 
+ object-fit: contain; 
+ } */
+
+
+.ProductDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: grey;
+  }
+  
+  .ProductDetails > div {
+    flex: 1;
+     box-sizing: border-box;
+    border: 1px solid white;
+  }
+  
+  .CarouselImage {
+     width: calc(100% - 40px); 
+  height: auto;
+  padding: 0 20px; 
+  object-fit: contain; 
+  }
+  
+  .detailsBlock-1 {
+    margin-bottom: 10px;
+  }
+  
+  .detailsBlock-2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .detailsBlock-2 span {
+    margin-left: 5px;
+  }
+  
+  .detailsBlock-3 {
+    margin-bottom: 10px;
+  }
+  
+  .detailsBlock-3-1 {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .detailsBlock-3-1-1 {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .detailsBlock-3-1-1 button {
+    padding: 5px 10px;
+    margin-right: 5px;
+  }
+  
+  .detailsBlock-3-1-1 input {
+    width: 50px;
+    padding: 5px;
+    margin-right: 5px;
+  }
+  
+  .detailsBlock-3-1-1 input[type="number"]::-webkit-inner-spin-button,
+  .detailsBlock-3-1-1 input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .detailsBlock-3-1-1 input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  
+  .detailsBlock-3-1-1 input[type="number"]:hover,
+  .detailsBlock-3-1-1 input[type="number"]:focus {
+    outline: none;
+  }
+  
+  .detailsBlock-3-1 button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .redColor {
+    color: red;
+  }
+  
+  .greenColor {
+    color: green;
+  }
+  
+  .detailsBlock-4 {
+    margin-bottom: 10px;
+  }
+  
+  .detailsBlock-4 p {
+    margin-top: 5px;
+  } 
