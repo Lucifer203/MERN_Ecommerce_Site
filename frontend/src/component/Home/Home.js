@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
 import { BsMouse2 } from "react-icons/bs";
 import "./Home.css";
-import Product from "./Product.js";
+import ProductCard from "./ProductCard.js";
 import Metadata from "../layout/Metadata";
-import { getProduct } from "../../actions/productAction";
+import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loading from "../layout/loader/loader";
 import { useAlert } from "react-alert";
@@ -16,7 +16,8 @@ const Home = () => {
 
   useEffect(() => {
     if (error) {
-      return alert.error(error);
+      alert.error(error);
+      dispatch(clearErrors());
     }
     dispatch(getProduct());
   }, [dispatch, error, alert]);
@@ -49,7 +50,7 @@ const Home = () => {
         <Product product={product} /> */}
             {products &&
               products.map((product) => (
-                <Product key={product._id} product={product} />
+                <ProductCard key={product._id} product={product} />
               ))}
           </div>
         </Fragment>
