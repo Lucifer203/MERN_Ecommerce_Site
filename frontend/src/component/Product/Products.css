@@ -1,0 +1,61 @@
+.productsHeading{
+    margin: 2vmax auto;
+    width: 15vw;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.479);
+    padding: 2vmax;
+    color: rgba(0, 0, 0, 0.678);
+    font: 500 1.5vmax "Roboto";
+    text-align: center;
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 5vmax;
+    justify-content: center;
+}
+
+.paginationBox{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination{
+    display: flex;
+}
+.page-item{
+    background-color: white;
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, 0.333);
+    padding: 1vmax 1.5vmax;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+.page-item:first-child{
+    border-radius: 5px 0 0 5px;
+}
+
+.page-item:last-child{
+    border-radius: 0 5px 5px 0;
+}
+.page-link{
+    text-decoration: none;
+    font: 300 0.7vmax "Roboto";
+    color: rgb(80, 80, 80);
+    transition: all 0.4s;
+}
+
+.page-item:hover{
+    background-color: rgb(231, 231, 231);
+}
+
+.page-item:hover .page-link{
+    color: rgb(15, 14, 14);
+}
+
+.pageItemActive{
+    background-color: tomato;
+}
+.pageLinkActive{
+    color: white;
+}

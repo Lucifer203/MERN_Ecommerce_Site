@@ -111,3 +111,53 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+// import React, { Fragment, useEffect } from "react";
+// import Carousel from "react-material-ui-carousel";
+// import "./ProductDetails.css";
+// import { useSelector, useDispatch } from "react-redux";
+// import { getProductDetails } from "../../actions/productAction";
+// import { useParams } from "react-router-dom";
+// import Loader from "../layout/loader/loader";
+
+// const ProductDetails = () => {
+//   const { id } = useParams();
+//   const dispatch = useDispatch();
+
+//   const { product } = useSelector((state) => state.productDetails);
+
+//   useEffect(() => {
+//     dispatch(getProductDetails(id));
+//   }, [dispatch, id]);
+
+//   if (!product) {
+//     return (
+//       <div>
+//         {" "}
+//         <Loader />{" "}
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <Fragment>
+//       <div className="ProductDetails">
+//         <div>
+//           <Carousel showArrows={false}>
+//             {product.images &&
+//               product.images.map((item, i) => (
+//                 <img
+//                   className="CarouselImage"
+//                   src={item.url}
+//                   alt={`${i} Slide`}
+//                   key={item.url}
+//                 />
+//               ))}
+//           </Carousel>
+//         </div>
+//       </div>
+//     </Fragment>
+//   );
+// };
+
+// export default ProductDetails;
