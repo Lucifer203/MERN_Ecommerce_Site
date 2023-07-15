@@ -2,6 +2,7 @@ const app = require("./app");
 const dotenv = require("dotenv");
 const connectToMongo = require("./config/database");
 dotenv.config({ path: "backend/config/config.env" });
+const cloudinary = require("cloudinary");
 
 // Handling Uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -13,6 +14,12 @@ process.on("uncaughtException", (err) => {
 //database connection
 console.log(process.env.CONNECTION_STRING);
 connectToMongo();
+
+cloudinaryl.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 //config
 const port = 5000;
