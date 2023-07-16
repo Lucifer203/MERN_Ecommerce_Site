@@ -6,11 +6,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useNavigate } from "react-router-dom";
-
+import { useAlert } from "react-alert";
+import { logout } from "../../../actions/userAction";
+import { useDispatch } from "react-redux";
 const UserOption = ({ user }) => {
+  const dispatch = useDispatch();
   const history = useNavigate();
   const [open, setOpen] = useState(false);
-
+  const alert = useAlert();
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
@@ -33,7 +36,7 @@ const UserOption = ({ user }) => {
     history("/account");
   }
   function logoutUser() {
-    // dispatch(logout());
+    dispatch(logout());
     alert.success("Logout Successfully");
   }
   return (
