@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import "./Header.css";
 import { SpeedDial, SpeedDialAction } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 import { useDispatch } from "react-redux";
+import zIndex from "@mui/material/styles/zIndex";
 const UserOption = ({ user }) => {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -19,10 +21,11 @@ const UserOption = ({ user }) => {
     { icon: <PersonIcon />, name: "Profile", func: account },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
+  console.log(user.role);
   if (user.role === "admin") {
     options.unshift({
       icon: <DashboardIcon />,
-      name: "DashBoard",
+      name: "Dashboard",
       func: dashboard,
     });
   }
@@ -33,7 +36,7 @@ const UserOption = ({ user }) => {
     history("/orders");
   }
   function account() {
-    history("/account");
+    history("/profile");
   }
   function logoutUser() {
     dispatch(logout());
@@ -41,12 +44,15 @@ const UserOption = ({ user }) => {
   }
   return (
     <Fragment>
+      <Backdrop open={open} style={{ zIndex: "10" }} />
       <SpeedDial
+        style={{ zIndex: "11" }}
         ariaLabel="SpeedDial tooltip example"
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         direction="down"
+        className="speedDial"
         icon={
           <img
             className="speedDialIcon"
@@ -57,6 +63,7 @@ const UserOption = ({ user }) => {
       >
         {options.map((item) => (
           <SpeedDialAction
+            key={item.name}
             icon={item.icon}
             tooltipTitle={item.name}
             onClick={item.func}
