@@ -68,6 +68,7 @@ const UpdateProfile = () => {
         <Loader />
       ) : (
         <Fragment>
+          <Metadata title={`${user.name} profile updating`} />
           <div className="updateProfileContainer">
             <div className="updateProfileBox">
               <h2 className="updateProfileHeading">Update Profile</h2>
