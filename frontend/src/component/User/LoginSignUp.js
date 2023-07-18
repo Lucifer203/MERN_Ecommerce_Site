@@ -50,6 +50,7 @@ const LoginSignUp = () => {
     dispatch(register(myForm));
   };
 
+  //Load image or any file from device
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
