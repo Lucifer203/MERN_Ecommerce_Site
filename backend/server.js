@@ -1,7 +1,6 @@
 const app = require("./app");
 const dotenv = require("dotenv");
 const connectToMongo = require("./config/database");
-dotenv.config({ path: "backend/config/config.env" });
 const cloudinary = require("cloudinary");
 
 // Handling Uncaught Exception
@@ -23,6 +22,7 @@ cloudinary.config({
 
 //config
 const port = 5000;
+dotenv.config({ path: "backend/config/config.env" });
 
 const server = app.listen(port, () => {
   console.log(`Server is working on http://localhost:${process.env.PORT}`);

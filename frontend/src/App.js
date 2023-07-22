@@ -9,7 +9,7 @@ import {
   Routes,
 } from "react-router-dom";
 import webFont from "webfontloader";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./component/Home/Home.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js";
@@ -28,9 +28,20 @@ import ResetPassword from "./component/User/ResetPassword.js";
 import Cart from "./component/Cart/Cart.js";
 import Shipping from "./component/Cart/Shipping.js";
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import axios from "axios";
+import Payment from "./component/Cart/Payment.js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const [stripeApiKey, setStripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+    setStripeApiKey(data.stripeApiKey);
+  }
+
   console.log(user);
   useEffect(() => {
     webFont.load({
@@ -39,6 +50,7 @@ function App() {
       },
     });
     store.dispatch(loadUser());
+    getStripeApiKey();
   }, []);
 
   return (
@@ -63,6 +75,19 @@ function App() {
           {/* <ProtectedRoute exact path="/account" element={<Profile />} /> */}
           {/* <Route exact path="/account" element={<Profile />} /> */}
 
+          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            {stripeApiKey && (
+              <Route
+                path="/process/payment"
+                element={
+                  <Elements stripe={loadStripe(stripeApiKey)}>
+                    <Payment />
+                  </Elements>
+                }
+              ></Route>
+            )}
+          </Route>
+
           {/* Protected Routes  */}
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
             <Route path="/account" element={<Profile />}></Route>
@@ -70,6 +95,9 @@ function App() {
             <Route path="/password/update" element={<UpdatePassword />}></Route>
             <Route exact path="/shipping" element={<Shipping />}></Route>
             <Route path="/order/confirm" element={<ConfirmOrder />}></Route>
+            {/* <Elements stripe={loadStripe(stripeApiKey)}>
+              <Route path="/process/payment" element={<Payment />}></Route>
+            </Elements> */}
           </Route>
 
           <Route path="/password/forgot" element={<ForgotPassword />}></Route>
