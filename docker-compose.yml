@@ -1,8 +1,26 @@
 version: '3.8'
 
 services:
+  # Node.js backend service
+  backend:
+    container_name: nodejs-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    volumes:
+      - ./backend:/app/server
+    depends_on:
+      - database
+    # environment:
+    #   MONGODB_URI: mongodb://host.docker.internal:27017/Ecommerce
+
+
   frontend:
-    build: 
+    build:
       context: ./frontend
       dockerfile: Dockerfile
     expose:
@@ -13,23 +31,6 @@ services:
       - ./frontend:/app/client
     stdin_open: true
     command: npm run start
-  
-  backend:
-    build: 
-      context: ./backend
-      dockerfile: Dockerfile
-    expose:
-      - 5000
-    image: ecommerce_server
-    ports:
-      - 5000:5000
-    volumes:
-      - ./backend:/app/server
-    depends_on:
-      - database
-    environment:
-      MONGODB_URI: mongodb://host.docker.internal:27017/Ecommerce
-    command: npm run dev
 
   database:
     image: mongo:latest
@@ -38,4 +39,3 @@ services:
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    
