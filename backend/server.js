@@ -11,7 +11,7 @@ process.on("uncaughtException", (err) => {
 });
 
 //database connection
-console.log(process.env.CONNECTION_STRING);
+console.log(process.env.MONGODB_URI);
 connectToMongo();
 
 cloudinary.config({

@@ -7,13 +7,14 @@ import { useLocation, useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/loader/loader";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import Metadata from "../layout/Metadata";
 import { addItemsToCart } from "../../actions/cartAction";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
+  // const alert = useAlert();
   const location = useLocation();
   const { id } = useParams();
   const { product, loading, error } = useSelector(
@@ -22,7 +23,7 @@ const ProductDetails = () => {
 
   const addToCartHandler = () => {
     dispatch(addItemsToCart(id, quantity));
-    alert.success("Items Added To Cart");
+    toast.success("Items Added To Cart");
   };
 
   const [quantity, setQuantity] = useState(1);
@@ -51,7 +52,7 @@ const ProductDetails = () => {
     //console.log(match);
     // const id = location.pathname.split("/")[2];
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     dispatch(getProductDetails(id));

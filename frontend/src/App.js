@@ -3,9 +3,7 @@ import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   Routes,
 } from "react-router-dom";
 import webFont from "webfontloader";
@@ -33,14 +31,19 @@ import Payment from "./component/Cart/Payment.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
-
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
-    setStripeApiKey(data.stripeApiKey);
+    try {
+      const { data } = await axios.get("/api/v1/stripeapikey");
+      setStripeApiKey(data.stripeApiKey);
+    } catch (error) {
+      toast.error("Please Login!")
+    }
   }
 
   console.log(user);
@@ -111,9 +114,11 @@ function App() {
 
           <Route exact path="/cart" element={<Cart />}></Route>
         </Routes>
-
         <Footer />
       </Router>
+      {/* <div style={{ position: 'sticky', top: '20px', right: '20px', zIndex: '-1' }}> */}
+      <ToastContainer />
+      {/* </div> */}
     </>
   );
 }
