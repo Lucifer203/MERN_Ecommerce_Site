@@ -4,27 +4,38 @@ services:
   frontend:
     build: 
       context: ./frontend
+      dockerfile: Dockerfile
+    expose:
+      - 3000
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./frontend:/app/client
     stdin_open: true
+    command: npm run start
   
   backend:
     build: 
       context: ./backend
+      dockerfile: Dockerfile
+    expose:
+      - 5000
+    image: ecommerce_server
     ports:
-      - "5000:5000"
+      - 5000:5000
     volumes:
-      - ./backend:/server
+      - ./backend:/app/server
     depends_on:
       - database
+    environment:
+      MONGODB_URI: mongodb://host.docker.internal:27017/Ecommerce
+    command: npm run dev
 
-  mongo:
-    image: mongo
+  database:
+    image: mongo:latest
     ports:
       - "27017:27017"
     restart: unless-stopped
-    volumes:
-      - mongodb_data:/data/db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     
