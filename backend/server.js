@@ -22,7 +22,7 @@ cloudinary.config({
 
 //config
 const port = 5000;
-dotenv.config({ path: "backend/config/config.env" });
+dotenv.config({ path: "config/config.env" });
 
 const server = app.listen(port, () => {
   console.log(`Server is working on http://localhost:${process.env.PORT}`);
