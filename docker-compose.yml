@@ -20,6 +20,7 @@ services:
 
 
   frontend:
+    container_name: reactjs-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -29,8 +30,8 @@ services:
       - 3000:3000
     volumes:
       - ./frontend:/app/client
-    stdin_open: true
-    command: npm run start
+    depends_on:
+      - backend
 
   database:
     image: mongo:latest

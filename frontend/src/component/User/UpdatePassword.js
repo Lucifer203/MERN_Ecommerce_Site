@@ -4,7 +4,8 @@ import Loader from "../layout/loader/loader";
 import Metadata from "../layout/Metadata";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updatePassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UPDATE_PASSWORD_RESET } from "../../constants/userConstants";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -14,7 +15,7 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 const UpdatePassword = () => {
   let history = useNavigate();
   const dispatch = useDispatch();
-  const alert = useAlert();
+  // const alert = useAlert();
 
   const { error, isUpdated, loading } = useSelector((state) => state.profile);
   const [oldPassword, setOldPassword] = useState("");
@@ -32,11 +33,11 @@ const UpdatePassword = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     if (isUpdated) {
-      alert.success("Profile Updated Successfully");
+      toast.success("Profile Updated Successfully");
       history("/account");
       dispatch({
         type: UPDATE_PASSWORD_RESET,

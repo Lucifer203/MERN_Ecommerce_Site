@@ -9,7 +9,8 @@ import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { Slider, Typography } from "@mui/material";
 //import { Typography } from "@mui/material/styles/createTypography";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import Metadata from "../layout/Metadata";
 
 const categories = [
@@ -26,7 +27,7 @@ const categories = [
 const Products = () => {
   const dispatch = useDispatch();
 
-  const alert = useAlert();
+  // const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -59,7 +60,7 @@ const Products = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
@@ -73,7 +74,7 @@ const Products = () => {
         <Loader />
       ) : (
         <Fragment>
-          <Metadata title="PRODUCTS...ECOMMERCE"/>
+          <Metadata title="PRODUCTS...ECOMMERCE" />
           <h2 className="productsHeading">Products</h2>
           <div className="products">
             {products &&

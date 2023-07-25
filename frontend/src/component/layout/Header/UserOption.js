@@ -7,7 +7,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import { logout } from "../../../actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import zIndex from "@mui/material/styles/zIndex";
@@ -18,7 +19,7 @@ const UserOption = ({ user }) => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const [open, setOpen] = useState(false);
-  const alert = useAlert();
+  // const alert = useAlert();
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     {
@@ -52,7 +53,7 @@ const UserOption = ({ user }) => {
   }
   function logoutUser() {
     dispatch(logout());
-    alert.success("Logout Successfully");
+    toast.success("Logout Successfully");
   }
   function cart() {
     history("/cart");

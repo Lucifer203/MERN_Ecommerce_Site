@@ -3,9 +3,7 @@ import Header from "./component/layout/Header/Header.js";
 import Footer from "./component/layout/Footer/Footer.js";
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Link,
   Routes,
 } from "react-router-dom";
 import webFont from "webfontloader";
@@ -33,7 +31,7 @@ import Payment from "./component/Cart/Payment.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
-
+import { ToastContainer } from 'react-toastify'
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -62,6 +60,7 @@ function App() {
         </Routes> */}
         <Header />
         {isAuthenticated && <UserOption user={user} />}
+        <ToastContainer />
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="/product/:id" element={<ProductDetails />}></Route>
@@ -111,7 +110,6 @@ function App() {
 
           <Route exact path="/cart" element={<Cart />}></Route>
         </Routes>
-
         <Footer />
       </Router>
     </>
