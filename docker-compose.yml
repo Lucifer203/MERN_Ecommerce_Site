@@ -37,5 +37,3 @@ services:
     ports:
       - "27017:27017"
     restart: unless-stopped
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
