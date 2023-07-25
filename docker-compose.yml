@@ -15,10 +15,8 @@ services:
       - ./backend:/app/server
     depends_on:
       - database
-    # environment:
-    #   MONGODB_URI: mongodb://host.docker.internal:27017/Ecommerce
-
-
+    environment:
+      FROM_DOCKER: 'true'
   frontend:
     container_name: reactjs-frontend
     build:

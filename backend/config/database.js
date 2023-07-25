@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
-const mongoUri =
-  "mongodb://127.0.0.1:27017/Ecommerce" || process.env.CONNECTION_STRING;
-
+let mongoUri =
+  "mongodb://127.0.0.1:27017/Ecommerce" || process.env.MONGODB_URI;
+if (process.env.FROM_DOCKER === 'true') {
+  mongoUri = "mongodb://database:27017/Ecommerce"
+}
 const connectToMongo = async () => {
   try {
     const connect = await mongoose.connect(mongoUri);

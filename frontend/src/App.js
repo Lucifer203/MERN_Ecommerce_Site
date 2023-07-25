@@ -37,8 +37,12 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
-    setStripeApiKey(data.stripeApiKey);
+    try {
+      const { data } = await axios.get("/api/v1/stripeapikey");
+      setStripeApiKey(data.stripeApiKey);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   console.log(user);
